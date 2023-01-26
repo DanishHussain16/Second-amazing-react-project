@@ -18,6 +18,11 @@ export default function Header() {
         setText(newUpText)
     }
 
+    const clear = ()=>{
+        let clear= "";
+        setText(clear);
+    }
+
 
   return (
     <>
@@ -29,6 +34,7 @@ export default function Header() {
 
       <button className='btn btn-primary mx-2' onClick={toUpper}>convert to uppercase</button>
       <button className='btn btn-primary mx-2' onClick={toLower}>convert to lowercase</button>
+      <button className='btn btn-danger mx-2' onClick={clear}>clear text</button>
       
 
     </div>
