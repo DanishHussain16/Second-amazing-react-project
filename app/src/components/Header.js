@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import propTypes from 'prop-types';
 
-export default function Header() {
+export default function Header(props) {
 
       const [text, setText]= useState("");
 
@@ -23,22 +24,36 @@ export default function Header() {
         setText(clear);
     }
 
+    const copy=()=>{
+
+          navigator.clipboard.writeText(text)
+
+           
+    }
+    
+
 
   return (
     <>
 
     
-    <div className="container">
-      <h2>Analyze your text</h2>
-      <textarea rows="10" cols="80" placeholder="enter text here" onChange={change} value={text}></textarea><br/>
+    <div className="container" style={props.myStyle} >
 
-      <button className='btn btn-primary mx-2' onClick={toUpper}>convert to uppercase</button>
-      <button className='btn btn-primary mx-2' onClick={toLower}>convert to lowercase</button>
-      <button className='btn btn-danger mx-2' onClick={clear}>clear text</button>
-      
+    <div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox" role="switch"    id="flexSwitchCheckDefault" onClick={props.mode}/>
+  <label class="form-check-label" for="flexSwitchCheckDefault">switch</label>
+</div> 
+      <h2>Analyze your text</h2>
+      <textarea rows="10" cols="80" placeholder="enter text here" style={props.myStyle} onChange={change} value={text}></textarea><br/>
+
+      <button className='btn btn-primary mx-2'onClick={toUpper}>to uppercase</button>
+      <button className='btn btn-primary mx-2'  onClick={toLower}>to lowercase</button>
+      <button className='btn btn-danger mx-2'  onClick={clear}>clear text</button>
+     
+    
 
     </div>
-    <div className="container">
+    <div className="container" style={props.myStyle}>
         <p><b>{text.length} </b> characters</p>
         <p><b>{text.split(" ").length} </b> words</p>
         <p>estimated time to read <b>{0.005*text.length}</b> minutes</p>
